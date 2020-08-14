@@ -1,0 +1,83 @@
+<html> 
+ <meta charset="utf-8">
+ <script src="public/js/aframe.js"> </script>
+
+<script>
+AFRAME.registerComponent('btnflow1', {
+init: function() {
+    this.el.addEventListener('mouseenter', (e) => {
+      this.el.setAttribute('src', '#foot-2');
+	  
+    })
+    this.el.addEventListener('mouseleave', (e) => {
+      this.el.setAttribute('src', '#foot-1');
+	 
+    })
+	
+	let ball = document.querySelector("#cball");
+	let sphereloader = () => {
+      ball.setAttribute("src", "#ball-1");
+	  }
+	  this.el.addEventListener('click', sphereloader);
+  }
+})
+AFRAME.registerComponent('btnflow2', {
+init: function() {
+    this.el.addEventListener('mouseenter', (e) => {
+      this.el.setAttribute('src', '#golf-2');
+	  
+    })
+    this.el.addEventListener('mouseleave', (e) => {
+      this.el.setAttribute('src', '#golf-1');
+	 
+    })
+	
+	let ball = document.querySelector("#cball");
+	let sphereloader = () => {
+      ball.setAttribute("src", "#ball-2");
+	  }
+	  this.el.addEventListener('click', sphereloader);
+  }
+})
+</script> 
+ 
+  <body>
+   <a-scene>
+      <a-assets>
+	    <img id="ball-1" src="asset/ball1.png">
+		<img id="ball-2" src="asset/ball2.png">
+		<img id="foot-1" src="asset/foot-n.png">
+		<img id="foot-2" src="asset/foot-h.png">
+		<img id="golf-1" src="asset/golf-n.png">
+		<img id="golf-2" src="asset/golf-h.png">
+		
+		
+	  
+	  </a-assets>
+	  <a-entity id="camera" position="0 1.6 0" camera look-controls="reverseMouseDrag:true" wasd-controls="acceleration:  200"  >
+        <a-entity cursor="rayOrigin: mouse"></a-entity>	    
+     </a-entity>
+
+      <a-sphere id="cball" src="#ball-2" position="0 1.25 -3" radius="0.8"  shadow material="shader:flat;"
+	  animation="property: rotation; to: 0 360 0; easing: easeInOutSine; dur: 30000; loop: true; elasticity: 0"
+	  ></a-sphere>
+
+      
+      <a-entity >
+	      <a-plane btnflow1 shadow id="btn01" scale="0.2 0.2 0.2" rotation="0 0 0" width="4" height="2.5" src="#foot-1" material="transparent:true" width:4;height:2.5"="" position="1.2 0.32 -2.7" geometry=""></a-plane>
+	  </a-entity >
+	  
+	  <a-entity >
+	      <a-plane btnflow2 shadow id="btn02" scale="0.2 0.2 0.2" rotation="0 0 0" width="4" height="2.5" src="#golf-1" material="transparent:true" width:4;height:2.5"="" position="-1.2 0.32 -2.7" geometry=""></a-plane>
+	  </a-entity >
+      <a-plane position="0 0 -2" rotation="-90 0 0" width="4.5" height="4.5" color="#7BC8A4" shadow></a-plane>
+   
+   
+      <a-sky radius="5000" material="color:#FFF;shader:flat;src:url(asset/360-4.jpg)" geometry="primitive:sphere;radius:5000;segmentsWidth:64;segmentsHeight:64" scale="1 1 1">
+	  </a-sky>
+	  
+   </a-scene>
+  
+  </body>
+
+</html>
